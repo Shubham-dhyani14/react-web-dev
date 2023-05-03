@@ -1,0 +1,57 @@
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+ </head>
+ <body>
+     <div class="root">
+        Not rendered!
+    </div>
+
+    <script type="module" src="script.js"></script>
+ </body>
+ </html>
+
+
+ <!-- 
+
+   #cmd used
+    
+    npm i --save-dev parcel    (to install parcel as dev dependency) 
+    OR
+    npm i -D parcel
+
+    npm i react                (installs react)
+    npm i react-dom            (installs react-dom) 
+    OR
+    npm i react react-dom      (installs both at once)
+
+    <PARCEL specific>
+    npx parcel <entry_point>               (For development build)
+    npx parcel build <entry_point>         (For production build)
+
+    ***********************************************************************************************************
+    ***Concepts cleared***
+
+    Rect and react-dom : 
+      React is used to create elements or Ui while react-dom manipulates dom.
+
+    Dev-dependencies vs dependencies:
+      dev-dependencies are only required for devlopment build and not for production build
+      while dependencies are used in production build.
+
+    Parcel: it is bundler which converts our code to production ready it includes babel also.
+      |
+      Parcel Features : 
+      HMR (Hot Module Replacement) : auto reaload seb-page on changing code
+      img compressiong , port managing , cleaning code , zero-configuration
+      |
+      babel : it is compiler which compiles our jsx to react syn i.e it converts each tag to 
+      react element by calling .createElement api. 
+      It also converts ES-2015 version to former and make compitable with old version of brwosers using polyfills.
+    
+ -->

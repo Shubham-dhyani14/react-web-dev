@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><react-hellow-world></react-hellow-world></title>
+</head>
+<body>
+
+    <div class="root">
+        <!-- here we will render react elements via reactDom  -->
+        Render Failed
+        <!-- this is better practise to display render fail message if react obj is not rendered -->
+
+        <!-- lets create below complex elements in html via react -->
+        <!-- <div class="container">
+            <div class="item"></div>
+            <div class="item"></div>
+        </div> -->
+    </div>
+
+    
+
+    <!-- we will first import the react threw cdn .We can use npm generally, but its a quick tut -->
+
+    <!-- react is used to createElements -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+    <!-- react dom contains the api. 
+        react dom is used to manuplate html dom (only) inside root element by rendering react elms
+        
+    -->
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+
+    <!-- now we can use react -->
+    <script>
+        //  React.createElement('tag name' , {attributes} , "children: innertext or (append children) ['el 1' , 'el2']")
+        console.log("create react el");
+        const heading = React.createElement('h1' , {id: "heading"} , "Heading") ;
+
+        console.log("React Element i.e js obj" , heading) ;
+
+        console.log("create root from" , document.querySelector(".root"));
+
+        // root is what, where our react have access 
+        const root = ReactDOM.createRoot(document.querySelector(".root"));
+
+        // root.render(heading) ;  // this line is included if there is no any script rendering root , as of now i am rendering root in below script ,  re-render will over-writes the dom
+    </script>
+
+    <!-- task-2 more complex el -->
+    <script>
+
+        // createElement api will return a js object called React Element
+        let item = React.createElement('div' , {className: "item"} , "item") ;
+        let container = React.createElement('div' ,{className: "container"} , [heading ,item , item] ) ;
+
+        root.render(container) ;
+
+    </script>
+</body>
+</html>
+
+<!-- #doubt don't know to get root by className -->
+<!--  #solved its returns html collection and not element -->
