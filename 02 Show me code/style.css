@@ -1,0 +1,104 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html
+{
+    background-color: aliceblue;
+}
+.navbar img
+{
+    height: 4rem;
+    width: 4rem;
+    /* border: 2px solid black; */
+}
+#logo
+{
+    display: flex;
+    align-items: center;
+    color: #bf1e2d;
+}
+.navbar
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    background-color: aliceblue;
+    /* color: aliceblue; */
+    box-shadow: 0px 0px 12px 0px #00000052;
+    height: 4rem;
+}
+/* 	https://www.pngitem.com/pimgs/m/249-2490135_tablespoon-fork-icon-food-logo-icon-restaurant-hd.png */
+.navbar ul
+{
+    /* border: 2px solid pink; */
+    list-style: none;
+    display: flex;
+    align-items: center;
+    grid-gap: 2rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000000;
+}
+.navbar ul li a
+{
+    text-decoration: none;
+    color: black;
+    padding: 0 8px;
+}
+
+.navbar ul li a:hover
+{
+  color: #bf1e2d;
+}
+
+
+/* -----------     card       ---------- */
+
+.resturant-list
+{
+    margin: 24px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+.restaurant-card img
+{
+  width: 100%;
+  border-radius: 12px  12px 0 0 ;
+}
+.restaurant-card
+{
+  /* padding: 0 6px; */
+  box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.23);
+  border-radius: 12px  12px 6px 6px ;
+  background-color: rgb(255, 255, 255);
+  width: 20vw;
+  min-width: 250px;
+  /* padding: 6px 12px; */
+  color:rgb(23, 24, 24);
+}
+.restaurant-info
+{
+  margin: 12px;
+}
+.rating-delv-info
+{
+  display: flex;
+  justify-content: space-between;
+}
+.delivery-info img
+{
+  width: 100%;
+}
+
+.del-time
+{
+  color: #f5f5f5;
+  background-color: #169116;
+  padding: 3px;
+  border-radius: 4px;
+}

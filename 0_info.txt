@@ -12,3 +12,7 @@ Day-3 29/4 : completed video-2(not-imp) and video-3
 Day-4 30/4 : completed video-4 (laying the foundation) and coded
 
 Day-5 01/5 : completed Half of video-5 (talk is cheap show me the code) not coded yet
+
+Day-6 02/5 : completed full video-5 not coded
+Day-7 03/5 : wathed git github tuts and pushed previous code to github.
+Day-8 04/6 : 
