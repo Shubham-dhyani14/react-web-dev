@@ -1,7 +1,9 @@
 import { useEffect, useState } from 'react';
 import { Img_url , restaurantList } from '../config';
 import ResturantCard from './RestaurantCard';
+import { features } from 'process';
 
+const api_url = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&page_type=DESKTOP_WEB_LISTING" ;
 
 function filterRestaurant(text, restaurants)
 {
@@ -23,15 +25,24 @@ export default Body = ()=>{
 
     // useEffect : 
     /*
-        it is used to run a fun() whenever state of st.var got change 
-        the fun. run after rendering.
-        syn: useEffect( funToRun , [state vars of which it should run the fun()])
+        * it is used to run a fun() whenever state of st. var got change 
+        * the fun. runs after rendering.
+        * if dependent vars is not given then it will always run once 
+        * syn: useEffect( funToRun , [dependent state vars on changing them it will run the fun()])
     */ 
 
     // Rendering of component is always done on state change of any var.
-    // in this case even serchText was changed in single char whole body will re-render
-    useEffect(()=>console.log("UseState Fun !") , [searchText]) ;
+    // in this case even if serchText was changed in a single char, whole body will re-render
 
+    useEffect(()=>fetchResturantsAndRender() , []) ;
+
+    async function fetchResturantsAndRender()
+    {
+        const data = await fetch(api_url) ;
+        const response = await data.json() ;
+        const allResturants = response.data.cards[2].data.data.cards ;
+        setRestaurants(allResturants) ;
+    }
     console.log("Rendering...") ;
     return (
             <>
@@ -62,8 +73,8 @@ export default Body = ()=>{
                          }}>
                         Go
                     </button>
-
                 </div>
+
                 <div className="resturant-list">
                     { 
                     // looping the json and returnig component for each item / obj
