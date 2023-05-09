@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Img_url , restaurantList } from '../config';
 import ResturantCard from './RestaurantCard';
 import { features } from 'process';
-
+import Sheemer  from "./sheemerUi";
 const api_url = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&page_type=DESKTOP_WEB_LISTING" ;
 
 function filterRestaurant(text, restaurants)
@@ -20,7 +20,7 @@ export default Body = ()=>{
 
     // sytax hooks : 
     // const varName [stateVar , setStateFun] = useState ;
-    const [restaurants , setRestaurants] = useState(restaurantList) ;
+    const [restaurants , setRestaurants] = useState([]) ;
     const [searchText, setSearchText] = useState("") ;
 
     // useEffect : 
@@ -44,7 +44,11 @@ export default Body = ()=>{
         setRestaurants(allResturants) ;
     }
     console.log("Rendering...") ;
-    return (
+
+
+    return (restaurants.length === 0 ) ? (<Sheemer/>) :
+    
+    (
             <>
                 <div className="search-container">
                     <input className='search-input' type="text" placeholder='Restaurants...' value={searchText} 
