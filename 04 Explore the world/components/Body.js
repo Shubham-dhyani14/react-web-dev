@@ -20,7 +20,9 @@ export default Body = ()=>{
 
     // sytax hooks : 
     // const varName [stateVar , setStateFun] = useState ;
-    const [restaurants , setRestaurants] = useState([]) ;
+    const [filteredRestaurants , setFilteredRestaurants] = useState([]) ;
+    //used as copy to fileter on search 
+    const [allRestaurants , setAllRestaurants] = useState([]) ; 
     const [searchText, setSearchText] = useState("") ;
 
     // useEffect : 
@@ -40,13 +42,14 @@ export default Body = ()=>{
     {
         const data = await fetch(api_url) ;
         const response = await data.json() ;
-        const allResturants = response.data.cards[2].data.data.cards ;
-        setRestaurants(allResturants) ;
+        const fetchedRestaurants = response.data.cards[2].data.data.cards ;
+        setFilteredRestaurants(fetchedRestaurants) ; 
+        setAllRestaurants(fetchedRestaurants) ;
     }
     console.log("Rendering...") ;
 
-
-    return (restaurants.length === 0 ) ? (<Sheemer/>) :
+    if(filteredRestaurants.length === 0 && allRestaurants.length) return(<h1>Searched out of aukat...</h1>)
+    return (allRestaurants.length === 0 ) ? (<Sheemer/>) :
     
     (
             <>
@@ -57,22 +60,22 @@ export default Body = ()=>{
                         {
                             setSearchText(e.target.value) ;
                             if(e.target.value == "") 
-                            setRestaurants(restaurantList) ;
+                            setFilteredRestaurants(allRestaurants) ;
                         }
                     }
                     onKeyDown={ //extra
                         (e)=>
                         {
                             if(e.key === "Enter")//same as serch-btn pressed
-                            setRestaurants(filterRestaurant(searchText, restaurants)) ;
+                            setFilteredRestaurants(filterRestaurant(searchText, allRestaurants)) ;
                         }
                     }
                     />
                     <button className='search-btn' onClick={
                         ()=>
                         {
-                            let data = filterRestaurant(searchText, restaurants); 
-                            setRestaurants(data) ;
+                            let data = filterRestaurant(searchText, allRestaurants); 
+                            setFilteredRestaurants(data) ;
                             return;
                          }}>
                         Go
@@ -82,7 +85,7 @@ export default Body = ()=>{
                 <div className="resturant-list">
                     { 
                     // looping the json and returnig component for each item / obj
-                        restaurants.map((restaurant)=>{
+                        filteredRestaurants.map((restaurant)=>{
                             return <ResturantCard key={restaurant.data.id} {...restaurant.data}/>
                         }) 
                     }
