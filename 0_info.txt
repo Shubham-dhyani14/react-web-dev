@@ -21,7 +21,7 @@ Day-9 05/6 : watched Ch - "Let's get hooked" complete (low productivity due to c
 
 Day-10 06/6 : Coded and watched Ch- "lets get hooks"
 
-Day-11 07/6 :  watched 
-Day-11 08/6 :  watched half of "
-Day-11 09/6 :
-Day-11 10/6 : code 
+Day-11 07/6 :  watched "chit chat session"
+Day-12 08/6 :  watched half of "Explore the world"
+Day-13 09/6 :  Completed "Explore the world" and coded "useEffect" to use api in real-time
+Day-14 10/6 :  coded remaining part-- fixed search

@@ -1,0 +1,8 @@
+# Things to remember in hooks:
+Avoid nesting components as on state chage components re-rendered
+Don't declare inside if-else block or loops
+Don't declare outside components
+
+
+# Extra 
+Formic is good pkg for form validation
