@@ -41,13 +41,17 @@ export default Body = ()=>{
 
     useEffect(()=>fetchResturantsAndRender() , []) ;
 
-    async function fetchResturantsAndRender()
+    const fetchResturantsAndRender = ()=>
     {
-        const data = await fetch(api_url) ;
-        const response = await data.json() ;
-        const fetchedRestaurants = response.data.cards[2].data.data.cards ;
-        setFilteredRestaurants(fetchedRestaurants) ; 
-        setAllRestaurants(fetchedRestaurants) ;
+        // using ifie to call main fun() to fix navgation break and remove warning
+        (async ()=>
+        {
+            const data = await fetch(api_url) ;
+            const response = await data.json() ;
+            const fetchedRestaurants = response.data.cards[2].data.data.cards ;
+            setFilteredRestaurants(fetchedRestaurants) ; 
+            setAllRestaurants(fetchedRestaurants) ;
+        })()
     }
     console.log("Rendering...") ;
 
