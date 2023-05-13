@@ -3,10 +3,11 @@ import ReactDOM  from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
 import Header from './components/Header';
+import About from './components/About';
+import Error from './components/Error'
 
 // createBrowserRouter is a fun() , RouterProvider is a component
 import {createBrowserRouter , RouterProvider} from 'react-router-dom'
-import About from './components/About';
 
 
 /*
@@ -24,12 +25,15 @@ const App = ()=>{
     )
 }
 
-// 
+//  createBrowserRouter takes [arr of obj] as input inside one obj we define 
+// a. path key as key and the routing link to the path e.g '\'
+// b. element key will take component as its value to the corresponding path
 
 const appRouter = createBrowserRouter([
     {
         path: '/', 
-        element: <App/>
+        element: <App/>,
+        errorElement: <Error/> , // used custom component to a undefined routing path
     } ,
    { 
     path: '/about' , 
@@ -57,7 +61,6 @@ will not able to find when var got changed and when to render it
 hooks return arr of a.)default value to our var and b.) a function which will set new value to var
 
 syntax: let [my_var, fn_to_chg_my_var] = useState("def val")
-
 
 */ 
 
