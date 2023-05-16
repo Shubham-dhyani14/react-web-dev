@@ -4,10 +4,11 @@ import Header from './components/Header';
 import Body from './components/Body';
 import Header from './components/Header';
 import About from './components/About';
+import Menu from './components/Menu';
 import Error from './components/Error'
 
 // createBrowserRouter is a fun() , RouterProvider is a component
-import {createBrowserRouter , RouterProvider} from 'react-router-dom'
+import {createBrowserRouter , Outlet, RouterProvider} from 'react-router-dom'
 
 
 /*
@@ -20,7 +21,8 @@ const App = ()=>{
     return (
         <>
             <Header></Header>
-            <Body></Body>
+            <Outlet></Outlet>
+            {/* <Body></Body> */}
         </>
     )
 }
@@ -32,13 +34,32 @@ const App = ()=>{
 const appRouter = createBrowserRouter([
     {
         path: '/', 
-        element: <App/>,
+        element: <App/>, // use app inside parent ----currently have header and outlet
         errorElement: <Error/> , // used custom component to a undefined routing path
-    } ,
-   { 
-    path: '/about' , 
-    element: <About/> 
-    }
+
+        // this children will be used inside outlet, the outlet use children to deside deside
+        // what to render inside it
+        children: [   
+            { 
+                path: '/' , 
+                element: <Body/> 
+            },
+            { 
+                path: '/about' , 
+                element: <About/> 
+            },
+            {
+                // id is not hard code but using with : define that any path inplace of id will make it 
+                // use pre-defined element instead of error
+                path: '/restaurant/:resid' , 
+                element: <Menu/>
+            },
+            {
+                path: '/menu' ,
+                element: <Menu/>
+            }
+        ]
+    } 
 ])
 
 

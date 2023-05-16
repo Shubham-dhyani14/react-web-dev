@@ -1,12 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Img_url , restaurantList } from '../config';
+import { Img_url , restaurantList , api_url} from '../config';
 import ResturantCard from './RestaurantCard';
 import { features } from 'process';
 import Sheemer  from "./sheemerUi";
+import { Link } from 'react-router-dom';
 
-
-
-const api_url = "https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&page_type=DESKTOP_WEB_LISTING" ;
 
 function filterRestaurant(text, restaurants)
 {
@@ -60,35 +58,34 @@ export default Body = ()=>{
     
     (
             <>
-                <div className="search-container">
-                    <input className='search-input' type="text" placeholder='Restaurants...' value={searchText} 
-                    onChange={
-                        (e)=>
-                        {
-                            setSearchText(e.target.value) ;
-                            if(e.target.value == "") 
-                            setFilteredRestaurants(allRestaurants) ;
-                        }
+             <div className="search-container">
+                <input className='search-input' type="text" placeholder='Restaurants...' value={searchText} 
+                onChange={
+                    (e)=>
+                    {
+                        setSearchText(e.target.value) ;
+                        if(e.target.value == "") 
+                        setFilteredRestaurants(allRestaurants) ;
                     }
-                    onKeyDown={ //extra
-                        (e)=>
-                        {
-                            if(e.key === "Enter")//same as serch-btn pressed
-                            setFilteredRestaurants(filterRestaurant(searchText, allRestaurants)) ;
-                        }
+                }
+                onKeyDown={ //extra
+                    (e)=>
+                    {
+                        if(e.key === "Enter")//same as serch-btn pressed
+                        setFilteredRestaurants(filterRestaurant(searchText, allRestaurants)) ;
                     }
-                    />
-                    <button className='search-btn' onClick={
-                        ()=>
-                        {
-                            let data = filterRestaurant(searchText, allRestaurants); 
-                            setFilteredRestaurants(data) ;
-                            return;
-                         }}>
-                        Go
-                    </button>
-                </div>
-
+                }
+                />
+                <button className='search-btn' onClick={
+                    ()=>
+                    {
+                        let data = filterRestaurant(searchText, allRestaurants); 
+                        setFilteredRestaurants(data) ;
+                        return;
+                    }}>
+                    Go
+                </button>
+            </div>
                 <div className="resturant-list">
                     { 
                     // looping the json and returnig component for each item / obj
