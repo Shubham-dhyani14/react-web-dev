@@ -28,5 +28,5 @@ Day-14 10/6 :  coded remaining part-- fixed search
 Day-15 11/6 :  wathed ch-"Finding the path" and coded - navigation to about
 Day-16 12/6 :  done nothing 
 Day-17 13/6 :  fixed navigation break on clicking link tag
-Day-17 14/6 :  spend time in css for menu item list and created child path to menu
-Day-17 15/6 :  completed chapter, fetched menu items and linked to all restaurants
+Day-18 14/6 :  spend time in css for menu item list and created child path to menu
+Day-19 15/6 :  completed chapter, fetched menu items and linked to all restaurants
