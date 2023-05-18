@@ -6,6 +6,7 @@ import Header from './components/Header';
 import About from './components/About';
 import Menu from './components/Menu';
 import Error from './components/Error'
+import Profile from './components/Profile';
 
 // createBrowserRouter is a fun() , RouterProvider is a component
 import {createBrowserRouter , Outlet, RouterProvider} from 'react-router-dom'
@@ -46,7 +47,16 @@ const appRouter = createBrowserRouter([
             },
             { 
                 path: '/about' , 
-                element: <About/> 
+                element: <About/> ,
+                // this is nested path using children
+                children: [
+                    {
+                        path : "profile" ,// to use 'localHost/about/profile' as url
+                        // --don;t use "/profile" in path key as this will be  'localhost/profile' in url
+
+                        element: <Profile/> //outlet was give to about to render profile as its child
+                    }
+                ]
             },
             {
                 // id is not hard code but using with : define that any path inplace of id will make it 
