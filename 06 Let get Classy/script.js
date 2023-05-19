@@ -6,7 +6,7 @@ import Header from './components/Header';
 import About from './components/About';
 import Menu from './components/Menu';
 import Error from './components/Error'
-import Profile from './components/Profile';
+import ProfileClassBase from './components/ProfileClassBase';
 
 // createBrowserRouter is a fun() , RouterProvider is a component
 import {createBrowserRouter , Outlet, RouterProvider} from 'react-router-dom'
@@ -54,7 +54,7 @@ const appRouter = createBrowserRouter([
                         path : "profile" ,// to use 'localHost/about/profile' as url
                         // --don;t use "/profile" in path key as this will be  'localhost/profile' in url
 
-                        element: <Profile/> //outlet was give to about to render profile as its child
+                        element: <ProfileClassBase name = "Gangsta"/> //outlet was give to about to render profile as its child
                     }
                 ]
             },
