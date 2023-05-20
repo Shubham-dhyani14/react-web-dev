@@ -11,8 +11,12 @@ class ProfileClassBase extends React.Component
         this.state = {
             count : 0 , 
             count2 : 0 ,
+            users : {
+                login : "Default name" , 
+                avatar_url : "none"
+            }
         }
-        console.log("first constructer then render") ;
+        console.log("--first constructer then render\n") ;
     }
     //  life cycles https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/
         // two phases : rende and commit
@@ -31,22 +35,45 @@ class ProfileClassBase extends React.Component
         // p - componentDidmount
         // -- similar like fun() calls
 
-    componentDidMount()
+    async componentDidMount()
     {
-        console.log("component mounted on first render , best to api call") ;
+        console.log("--component mounted on first render , best to api call\n") ;
+
+        // timing events need to be clear else it will be continued even on next page going
+        // and returning to that page again will set timing events again
+            // clearing must done on componentWillUnmount
+
+        this.timer = setInterval(()=>
+        {
+            console.log("timer from class compnent") ; //try comment clearinterval in unmount
+        } , 1000) 
+
+        const data = await fetch('https://api.github.com/users') ;
+        const json = await data.json() ;
+        this.setState({
+            users : json[0], 
+        })
+
+
     }
 
-    componentDidUpdate()
+    componentDidUpdate(prvProps , prvState) // to put dependencies like useEffect
     {
-        console.log("componentDidUpdate trigered on every render")
+        if(this.state.count != prvState.count || this.state.count2 != prvState.count2)  // [count , count2]
+        console.log("--counts are changed") ;
+
+        console.log("--componentDidUpdate trigered on every render\n")
     }    
 
     componentWillUnmount()
     {
-        console.log("componentWillUnmount on path change , help to clean up like setTimeout , intervals etc");
+        console.log("--componentWillUnmount on path change , help to clean up like setTimeout , intervals etc");
+        console.log("--clearing the interval\n") ;
+        clearInterval(this.timer) ; 
     }
     render()
     {
+        const {login , avatar_url} = this.state.users ; //destructuring
         return (
             <>
             {console.log("rendered")}
@@ -66,6 +93,11 @@ class ProfileClassBase extends React.Component
                     )
                 }
             }>change counts</button>
+
+            <br /><br />
+            <h3> On async componentDIdMont to fetch url</h3>
+            <h2>{login}</h2> 
+            <img src={this.state.users.avatar_url} alt="Profile dp" />
             </>
         )
         
