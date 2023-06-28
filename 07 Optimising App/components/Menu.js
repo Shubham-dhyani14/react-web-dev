@@ -1,6 +1,7 @@
 import {menu_api, Img_url} from '../config' ;
 import {useEffect , useEffect, useState} from 'react' ;
 import {useParams} from 'react-router-dom' ;//this will used to get last dynamic path value like /menu/:id
+import useMenu from '../utils/useRestaurantMenu.js' ;
 
 
 const Menu = ()=>
@@ -9,27 +10,11 @@ const Menu = ()=>
     const {resid} = params ;
     console.log("resid " , resid) ;
 
-    const [menuItems , setMenuItems]  = useState([]) ;
-    useEffect(()=>
-    {
-        // fetch menu
-        fetchMenus() ;
-    } , [])
+    // const [menuItems , setMenuItems]  = useState([]) ;
+    // logic is extracted to hook in util folder
+    const menuItems = useMenu(resid) ;
     
-    function fetchMenus()
-    {
-        (async ()=>
-        {
-            const url = menu_api + resid + "&submitAction=ENTER" ;
-            console.log(url) ;
-            const data = await fetch(url) ;
-            const json = await data.json() ;
-            console.log(json) ;
-            setMenuItems(json.data.cards[2].groupedCard.cardGroupMap.REGULAR.cards[3].card.card.itemCards) ;
-            console.log(menuItems) ;
-
-        })()
-    }
+    
 
     if (!menuItems) return ;
     return (!menuItems.length) ? (<h1>Loading items...</h1>) :(

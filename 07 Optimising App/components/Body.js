@@ -4,16 +4,9 @@ import ResturantCard from './RestaurantCard';
 import { features } from 'process';
 import Sheemer  from "./sheemerUi";
 import { Link } from 'react-router-dom';
+import {filterRestaurant , useOnlineStatus} from "../utils/helper"
 
-
-function filterRestaurant(text, restaurants)
-{
-
-    return restaurants.filter((restaurant)=>
-    {
-        return restaurant.data.name.toLowerCase().includes(text.toLowerCase()) ;
-    })
-}
+// filedterRestaurent moved  to utils 
 
 
 
@@ -52,7 +45,9 @@ export default Body = ()=>{
         })()
     }
     console.log("Rendering...") ;
-
+    
+    const isOnline = useOnlineStatus() ; // always use 'hooks' to declare useEffect and state vars inside it
+    if(!isOnline)  return(<h1>Offline gaya beee....</h1>) ; 
     if(filteredRestaurants.length === 0 && allRestaurants.length) return(<h1>Searched out of aukat...</h1>)
     return (allRestaurants.length === 0 ) ? (<Sheemer/>) :
     
