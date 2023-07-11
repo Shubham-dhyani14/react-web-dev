@@ -11,6 +11,7 @@ import About from './components/About';
 // import Menu from './components/Menu';  //loading lazy
 import Error from './components/Error'
 import ProfileClassBase from './components/ProfileClassBase';
+import Offers from './components/Offers';
 
 // createBrowserRouter is a fun() , RouterProvider is a component
 import {createBrowserRouter , Outlet, RouterProvider} from 'react-router-dom'
@@ -76,6 +77,10 @@ const appRouter = createBrowserRouter([
             {
                 path: '/menu' ,
                 element: (<Suspense fallback={<h1> Fallback Loading... </h1>}> <Menu/> </Suspense> )
+            }, 
+            {
+                path: '/offers' ,
+                element: <Offers/>
             }
         ]
     } 

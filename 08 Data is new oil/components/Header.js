@@ -17,7 +17,7 @@ export default Header =()=>{
                 <ul>
                     <li className="nav-link"> <Link to={"/about"}>About us</Link> </li>
                     <li className="nav-link"> <Link to="/">Help & Support</Link> </li>
-                    <li className="nav-link"> <Link to="/">Offers</Link> </li>
+                    <li className="nav-link"> <Link to="/offers">Offers</Link> </li>
                     <li className="nav-link"> <Link to="/">Cart</Link> </li>
                     <button className="login-btn">Login</button>
                 </ul>
