@@ -1,15 +1,24 @@
-import React from 'react' ;
+import React , {lazy , Suspense}from 'react' ; 
+// lazy is fun() used to load component in another js file to reduse load in one file
+// suspense is another component provided by react to use lazy loaded components
+// reason to use suspanse : lazy loading js file first time will not render to ui as code not exist 
+// being single page app it will load next time
+// fallback prop can be used for sheemers
 import ReactDOM  from 'react-dom/client';
 import Header from './components/Header';
 import Body from './components/Body';
-import Header from './components/Header';
 import About from './components/About';
-import Menu from './components/Menu';
+// import Menu from './components/Menu';  //loading lazy
 import Error from './components/Error'
 import ProfileClassBase from './components/ProfileClassBase';
 
 // createBrowserRouter is a fun() , RouterProvider is a component
 import {createBrowserRouter , Outlet, RouterProvider} from 'react-router-dom'
+
+
+const Menu = lazy(()=>import('./components/Menu')) ; //this use another js bundel load 
+// must use suspanse component
+// don't lazy  load inside component just load at top like default import
 
 
 /*
@@ -62,11 +71,11 @@ const appRouter = createBrowserRouter([
                 // id is not hard code but using with : define that any path inplace of id will make it 
                 // use pre-defined element instead of error
                 path: '/restaurant/:resid' , 
-                element: <Menu/>
+                element: (<Suspense fallback={<h1> Fallback Loading... </h1>}> <Menu/> </Suspense> )
             },
             {
                 path: '/menu' ,
-                element: <Menu/>
+                element: (<Suspense fallback={<h1> Fallback Loading... </h1>}> <Menu/> </Suspense> )
             }
         ]
     } 

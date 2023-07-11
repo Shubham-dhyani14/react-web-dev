@@ -2,7 +2,7 @@
 // and may be required multiple time also used to make code cleaner , testable
 // like : filterRestaurents , show offline . online etc
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 export function filterRestaurant(text, restaurants)
 {
 
@@ -15,16 +15,24 @@ export function filterRestaurant(text, restaurants)
 
 export function useOnlineStatus()
 {
-    window.addEventListener('online',   updateOnlineStatus);
-    window.addEventListener('offline',  updateOnlineStatus);
-
+    
     const [isOnline , setIsOnline] = useState(true) ;
     
-   
-    function updateOnlineStatus(event) 
-    {
-        setIsOnline(navigator.onLine) ; 
+    useEffect(()=>{
+        window.addEventListener('online',   updateOnlineStatus);
+        window.addEventListener('offline',  updateOnlineStatus);
+        
+       function updateOnlineStatus(event) 
+       {
+           setIsOnline(navigator.onLine) ; 
+       }
+
+       return ()=>{ 
+        window.removeEventListener('online' ,updateOnlineStatus) ; 
+        window.removeEventListener('offline' ,updateOnlineStatus) ; 
+
     }
+   }, [])
     return isOnline ;
 }
 
