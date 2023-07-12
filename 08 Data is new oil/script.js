@@ -1,3 +1,5 @@
+// used provider to pass custom values
+
 import React , {lazy , Suspense}from 'react' ; 
 // lazy is fun() used to load component in another js file to reduse load in one file
 // suspense is another component provided by react to use lazy loaded components

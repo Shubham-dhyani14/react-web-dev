@@ -1,5 +1,6 @@
 import React from "react";
 import Profile from "./Profile";
+import UserContext from "../utils/UserContext";
 
 class ProfileClassBase extends React.Component
 {
@@ -98,6 +99,11 @@ class ProfileClassBase extends React.Component
             <h3> On async componentDIdMont to fetch url</h3>
             <h2>{login}</h2> 
             <img src={this.state.users.avatar_url} alt="Profile dp" />
+
+            <h5>Using lect 8 Data is oil to show how to use context without hook i.e useContext</h5>
+            <UserContext.Consumer>
+              {  ({user})=><p>{user.name} is rendered using UserContext.Consumer</p>}
+            </UserContext.Consumer>
             </>
         )
         

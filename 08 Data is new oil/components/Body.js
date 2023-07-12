@@ -1,3 +1,5 @@
+// custom context was passed via provider and used in input to change its value
+
 import { useEffect, useState ,useContext} from 'react';
 import { Img_url , restaurantList , api_url} from '../config';
 import ResturantCard from './RestaurantCard';
@@ -18,7 +20,9 @@ export default Body = ()=>{
     //used as copy to fileter on search 
     const [allRestaurants , setAllRestaurants] = useState([]) ; 
     const [searchText, setSearchText] = useState("") ;
-    const {user , setUser} = useContext(UserContext)
+
+    //destructured values from cutom context passed by provider from script.js
+    const {user , setUser} = useContext(UserContext) 
      console.log("user" , user) ;
     
 
@@ -86,7 +90,7 @@ export default Body = ()=>{
             </div>
 
             <input type="text" value={user.name} onChange={
-                    (e)=>{
+                    (e)=>{  //going to chang user name via input
                         setUser({ 
                          name: e.target.value , mail : "kallu@challu"
                         })
