@@ -5,16 +5,17 @@ import { useState } from "react";
 // };
 
 
-const Section =({title , discrp})=>
+const Section =({title , discrp , handleIsVisible , isVisible})=>
 {
 
-    const [isVisible , setIsVisible] = useState(true) ;
+    // const [isVisible , setIsVisible] = useState(true) ;
 
     return(
         <>
         <h2>{title}</h2>
         {isVisible && <p>{discrp}</p>}
-        <button  onClick={()=>{isVisible ? setIsVisible(false) : setIsVisible(true)}}>show</button>
+        <button  onClick={()=>{handleIsVisible()}}>show</button>
+        {/* <button  onClick={()=>{isVisible ? setIsVisible(false) : setIsVisible(true)}}>show</button> */}
         <br></br>
         <br></br>
         </>
@@ -24,7 +25,11 @@ const Section =({title , discrp})=>
 
 const Offers = ()=> {
 
-
+    const [ configVisible , setConfigVisible ] = useState({
+        showBuyOne : true ,
+        showSaste : false ,
+        showMahange : false ,
+    })
 
     return (
     <>
@@ -36,13 +41,29 @@ const Offers = ()=> {
 
         <hr />
 
-        <Section title="Buy 1 get 1" discrp="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem quibusdam architecto neque et totam consequuntur cum, sequi natus, possimus ipsam asperiores accusantium molestiae itaque voluptatum non aspernatur alias quasi"></Section>
+        <Section title="Buy 1 get 1" discrp="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem quibusdam architecto neque et totam consequuntur cum, sequi natus, possimus ipsam asperiores accusantium molestiae itaque voluptatum non aspernatur alias quasi" handleIsVisible = { ()=>{
+            console.log("clk")
+             setConfigVisible({showBuyOne : true ,
+             showSaste : false ,
+             showMahange : false ,})
+             }
+        } isVisible = {configVisible.showBuyOne}></Section>
 
 
-        <Section title="Saste Offer" discrp="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem quibusdam architecto neque et totam consequuntur cum, sequi natus, possimus ipsam asperiores accusantium molestiae itaque voluptatum non aspernatur alias quasi"></Section>
+        <Section title="Saste Offer" discrp="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem quibusdam architecto neque et totam consequuntur cum, sequi natus, possimus ipsam asperiores accusantium molestiae itaque voluptatum non aspernatur alias quasi" handleIsVisible = {  ()=>{
+                          setConfigVisible({  showBuyOne : false ,
+                            showSaste : true ,
+                            showMahange : false ,})
+                            }
+        } isVisible = {configVisible.showSaste}></Section>
         
         
-        <Section title="Saste Offer" discrp="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem quibusdam architecto neque et totam consequuntur cum, sequi natus, possimus ipsam asperiores accusantium molestiae itaque voluptatum non aspernatur alias quasi"></Section>
+        <Section title="Mahange Offer" discrp="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem quibusdam architecto neque et totam consequuntur cum, sequi natus, possimus ipsam asperiores accusantium molestiae itaque voluptatum non aspernatur alias quasi" handleIsVisible = { ()=>{
+                          setConfigVisible({  showBuyOne : false ,
+                            showSaste : false ,
+                            showMahange : true ,})
+                            }
+        } isVisible = {configVisible.showMahange}></Section>
         
     </>)
 }
