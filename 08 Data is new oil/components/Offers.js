@@ -25,11 +25,7 @@ const Section =({title , discrp , handleIsVisible , isVisible})=>
 
 const Offers = ()=> {
 
-    const [ configVisible , setConfigVisible ] = useState({
-        showBuyOne : true ,
-        showSaste : false ,
-        showMahange : false ,
-    })
+    const [ configVisible , setConfigVisible ] = useState("buyOne")
 
     return (
     <>
@@ -42,28 +38,21 @@ const Offers = ()=> {
         <hr />
 
         <Section title="Buy 1 get 1" discrp="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem quibusdam architecto neque et totam consequuntur cum, sequi natus, possimus ipsam asperiores accusantium molestiae itaque voluptatum non aspernatur alias quasi" handleIsVisible = { ()=>{
-            console.log("clk")
-             setConfigVisible({showBuyOne : true ,
-             showSaste : false ,
-             showMahange : false ,})
+                setConfigVisible("buyOne")
              }
-        } isVisible = {configVisible.showBuyOne}></Section>
+        } isVisible = {configVisible === "buyOne"}></Section>
 
 
         <Section title="Saste Offer" discrp="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem quibusdam architecto neque et totam consequuntur cum, sequi natus, possimus ipsam asperiores accusantium molestiae itaque voluptatum non aspernatur alias quasi" handleIsVisible = {  ()=>{
-                          setConfigVisible({  showBuyOne : false ,
-                            showSaste : true ,
-                            showMahange : false ,})
+                          setConfigVisible("saste")
                             }
-        } isVisible = {configVisible.showSaste}></Section>
+        } isVisible = {configVisible === "saste"}></Section>
         
         
         <Section title="Mahange Offer" discrp="Lorem ipsum, dolor sit amet consectetur adipisicing elit. Libero autem quibusdam architecto neque et totam consequuntur cum, sequi natus, possimus ipsam asperiores accusantium molestiae itaque voluptatum non aspernatur alias quasi" handleIsVisible = { ()=>{
-                          setConfigVisible({  showBuyOne : false ,
-                            showSaste : false ,
-                            showMahange : true ,})
+                          setConfigVisible("mahange")
                             }
-        } isVisible = {configVisible.showMahange}></Section>
+        } isVisible = {configVisible === "mahange"}></Section>
         
     </>)
 }
