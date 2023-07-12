@@ -12,6 +12,8 @@ import About from './components/About';
 import Error from './components/Error'
 import ProfileClassBase from './components/ProfileClassBase';
 import Offers from './components/Offers';
+import UserContext from './utils/UserContext';
+import { useContext , useState} from 'react';
 
 // createBrowserRouter is a fun() , RouterProvider is a component
 import {createBrowserRouter , Outlet, RouterProvider} from 'react-router-dom'
@@ -29,10 +31,20 @@ navbar
 */
 
 const App = ()=>{
+    // will be passed as cutomised context to modify existing using .provider
+    const [user, setUser] = useState({ name:"lallu" , mail : "kallu@challu"})
     return (
         <>
-            <Header></Header>
+        {/* myContext.Provider it is used as component have value prop passed to set 
+        default value to defined context. 
+        Note : it will only applied to its inner child wrapped inside .Provider 
+        try setting Header outside this component
+        */}
+            <UserContext.Provider value={{user: user , setUser : setUser}}>
+            <Header></Header> 
+
             <Outlet></Outlet>
+            </UserContext.Provider>
             {/* <Body></Body> */}
         </>
     )

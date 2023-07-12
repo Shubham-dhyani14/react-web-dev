@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState ,useContext} from 'react';
 import { Img_url , restaurantList , api_url} from '../config';
 import ResturantCard from './RestaurantCard';
 import { features } from 'process';
 import Sheemer  from "./sheemerUi";
 import { Link } from 'react-router-dom';
 import {filterRestaurant , useOnlineStatus} from "../utils/helper"
-
+import UserContext from '../utils/UserContext';
 // filedterRestaurent moved  to utils 
 
 
@@ -18,6 +18,9 @@ export default Body = ()=>{
     //used as copy to fileter on search 
     const [allRestaurants , setAllRestaurants] = useState([]) ; 
     const [searchText, setSearchText] = useState("") ;
+    const {user , setUser} = useContext(UserContext)
+     console.log("user" , user) ;
+    
 
     // useEffect : 
     /*
@@ -81,6 +84,14 @@ export default Body = ()=>{
                     Go
                 </button>
             </div>
+
+            <input type="text" value={user.name} onChange={
+                    (e)=>{
+                        setUser({ 
+                         name: e.target.value , mail : "kallu@challu"
+                        })
+                    }
+                }/>
                 <div className="resturant-list">
                     { 
                     // looping the json and returnig component for each item / obj
