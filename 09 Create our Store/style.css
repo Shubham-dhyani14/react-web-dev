@@ -1,0 +1,260 @@
+*
+{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+html
+{
+    background-color: aliceblue;
+}
+.navbar img
+{
+    height: 4rem;
+    width: 4rem;
+    /* border: 2px solid black; */
+}
+#logo
+{
+    display: flex;
+    align-items: center;
+    color: #bf1e2d;
+}
+.navbar
+{
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1.5rem;
+    background-color: aliceblue;
+    /* color: aliceblue; */
+    box-shadow: 0px 0px 12px 0px #00000052;
+    height: 4rem;
+}
+/* 	https://www.pngitem.com/pimgs/m/249-2490135_tablespoon-fork-icon-food-logo-icon-restaurant-hd.png */
+.navbar ul
+{
+    /* border: 2px solid pink; */
+    list-style: none;
+    display: flex;
+    align-items: center;
+    grid-gap: 1rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #000000;
+}
+.navbar ul li a
+{
+    text-decoration: none;
+    color: black;
+    padding: 0 8px;
+}
+
+.navbar ul li a:hover
+{
+  color: #bf1e2d;
+}
+
+.login-btn
+{
+  border: none;
+  outline: none;
+  background-color: #bf1e2d;
+  font-size: inherit;
+  border-radius: 16px ;
+  color: aliceblue;
+  padding: .4rem .8rem;
+  cursor: pointer;
+}
+
+
+/* -----------------     card       --------------------- */
+
+.resturant-list a
+{
+  text-decoration: none;
+  color: black;
+}
+.resturant-list
+{
+    margin: 24px 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100vw;
+}
+.restaurant-card img
+{
+  width: 100%;
+  border-radius: 12px  12px 0 0 ;
+  transform: scale(1);
+  transition: .3s ease-in-out;
+  display: block;  /*preventing figure to have extra height in bottom*/
+  /* ref : https://stackoverflow.com/questions/5804256/image-inside-div-has-extra-space-below-the-image */
+}
+.restaurant-card:hover figure>img 
+{
+  transform: scale(1.2);
+}
+
+figure
+{
+  overflow: hidden;
+}
+.restaurant-card
+{
+  box-shadow: 0px 0px 20px 5px rgba(0,0,0,0.23);
+  margin: 2rem;
+  border-radius: 12px  12px 6px 6px ;
+  background-color: rgb(255, 255, 255);
+  width: 20vw;
+  min-width: 250px;
+  color:rgb(23, 24, 24);
+  overflow: hidden; /*to prevent bor-redi hidden by scaling img on scaling*/
+}
+.restaurant-info
+{
+  margin: 12px;
+}
+.rating-delv-info
+{
+  display: flex;
+  justify-content: space-between;
+}
+.delivery-info img
+{
+  width: 100%;
+}
+
+.del-time
+{
+  color: #f5f5f5;
+  background-color: #169116;
+  padding: 3px;
+  border-radius: 4px;
+}
+
+
+/* --------------    search cont ------------------- */
+
+
+.search-container
+{
+  position: relative;
+  width: 15rem;
+  margin: 1.5rem;
+  /* height: 5rem; */
+}
+
+.search-container>input
+{
+  width: 100%;
+  border: 1px solid black;
+  outline: none;
+  font-size: 1.1rem;
+  padding: .5rem .8rem;
+  border-radius: 8px;
+  position: relative;
+  transition: all .3s cubic-bezier(0, 0, 0.43, 1.55);
+  /* transition-property: width, border-radius; */
+  /* z-index: 1; */
+}
+
+.search-container
+{
+  background-color: #bf1e2d;
+  border-radius: 10px;
+}
+.search-container>button
+{
+  height: 100%;
+  width: 3rem;
+  position: absolute;
+  top:0;
+  right: 0;
+  background-color: #bf1e2d;
+  color: whitesmoke;
+  border: 1px solid #bf1e2d;
+  border-radius: 0 8px 8px 0;
+  display: none;
+  /* z-index: 2; */
+}
+
+.search-input:not(:placeholder-shown) {
+  border-radius: 8px 0 0 8px;
+  width: calc(100% - 3rem);
+
+}
+.search-input:not(:placeholder-shown) ~ .search-btn
+{
+  display: block;
+}
+
+
+/* ------------------      menu   cards ---------------------- */
+
+
+.item-menu-card
+{
+  /* border: 2px solid red;  */
+    justify-content: space-between;
+    margin: 1rem 0;
+    min-height: 8rem;
+    background-color: #f0f8ff;
+    padding: 1rem 1rem;
+    border-radius: 10px;
+    /* color: white; */
+    display: flex;
+}
+
+/* .item-menu-card:hover
+{
+    box-shadow: rgba(0, 0, 0, 0.63) 0px 0px 21px -10px;
+} */
+
+.item-menu-card img
+{
+  max-width: 15%;
+  background-color: #9FA8DA;
+  /* border: 2px solid green; */
+  border-radius: 25px;
+  padding: .5rem;
+  margin: .4rem;
+}
+
+
+.menu-info
+{
+  width: 80%;
+    /* border: 2px solid green; */
+    justify-content: space-between;
+    display: flex;
+}
+.cta-sec
+{
+  width: 15%;
+  padding : auto 0;
+  /* border: 1px solid black; */
+}
+.basic
+{
+  /* border: 2px solid pink; */
+  width: 80%;
+}
+
+
+.menu-cont
+{
+  margin: 0 8rem;
+}
+
+.buy-btn
+{
+  width: 50%;
+  padding: .6rem .8rem;
+  margin-top: 1rem;
+  background-color: green;
+  color: aliceblue;
+  border: none;
+  border-radius: 12px;
+  cursor: pointer;
+}
