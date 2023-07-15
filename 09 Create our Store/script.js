@@ -11,9 +11,11 @@ import About from './components/About';
 // import Menu from './components/Menu';  //loading lazy
 import Error from './components/Error'
 import ProfileClassBase from './components/ProfileClassBase';
-
+import { Provider } from 'react-redux';
+import reduxStore from './utils/reduxStore';
 // createBrowserRouter is a fun() , RouterProvider is a component
 import {createBrowserRouter , Outlet, RouterProvider} from 'react-router-dom'
+
 
 
 const Menu = lazy(()=>import('./components/Menu')) ; //this use another js bundel load 
@@ -30,9 +32,11 @@ navbar
 const App = ()=>{
     return (
         <>
+        <Provider store = {reduxStore}> 
             <Header></Header>
             <Outlet></Outlet>
             {/* <Body></Body> */}
+        </Provider>
         </>
     )
 }
