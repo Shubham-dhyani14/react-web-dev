@@ -258,3 +258,8 @@ figure
   border-radius: 12px;
   cursor: pointer;
 }
+
+.basic .buy-btn
+{
+  width: 20%;
+}

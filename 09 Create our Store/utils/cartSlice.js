@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const cartSlice = createSlice(
     {
         // name of slice
-        name: 'cartSlice' ,
+        name: 'cart' ,
 
         // all sate vars defined here
         initialState : {
@@ -19,11 +19,11 @@ const cartSlice = createSlice(
                 state.items.push(action.payload) ;
             } , 
 
-            removeItem : (state)=>{
-                state.items.pop() ;
+            removeItem : (state , action)=>{
+                state.items = state.items.filter(item => item.card.info.id != action.payload) ;
             } ,
 
-            clearCart : (state){
+            clearCart : (state)=>{
                 state.items = [] ;
             }
         }

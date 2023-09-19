@@ -11,6 +11,7 @@ import About from './components/About';
 // import Menu from './components/Menu';  //loading lazy
 import Error from './components/Error'
 import ProfileClassBase from './components/ProfileClassBase';
+import Cart from './components/Cart';
 import { Provider } from 'react-redux';
 import reduxStore from './utils/reduxStore';
 // createBrowserRouter is a fun() , RouterProvider is a component
@@ -80,6 +81,10 @@ const appRouter = createBrowserRouter([
             {
                 path: '/menu' ,
                 element: (<Suspense fallback={<h1> Fallback Loading... </h1>}> <Menu/> </Suspense> )
+            },
+            {
+                path: '/cart' , 
+                element: <Cart/>
             }
         ]
     } 
