@@ -21,7 +21,7 @@ export default function VideoCard({id, publishedAt,title ,channelId, channelTitl
     <>
       <div className="w-full group   sm:w-11/12 mx-auto bg-white drop-shadow-sm sm:rounded-lg cursor-pointer hover:drop-shadow-md overflow-hidden transition-all duration-200">
         <a href="/">
-           <figure className='overflow-hidden rounded-none relative w-full h-56'>
+           <figure className='overflow-hidden rounded-none relative w-full h-56 sm:h-48 lg:-56'>
             <img className='bg-slate-300 absolute top-0 left-0 w-full rounded-none sm:rounded-md group-hover:scale-105 block transition-all duration-200'
         src={ thumbnails.maxres?.url ||  thumbnails.medium?.url} alt="thumbnail" />
         </figure>
