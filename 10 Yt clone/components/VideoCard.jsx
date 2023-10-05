@@ -1,6 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import {API_YT_CHANNEL_DATA ,API_KEY} from '../config'
-export default function VideoCard({id,title ,channelId, channelTitle , thumbnails , viewCount}) {
+
+import minifyMs from '../utils/msFormatter'
+
+export default function VideoCard({id, publishedAt,title ,channelId, channelTitle , thumbnails , viewCount}) {
 
   const [channelInfo , setChannelInfo] = useState({}) ;
   useEffect(()=>{
@@ -31,13 +34,13 @@ export default function VideoCard({id,title ,channelId, channelTitle , thumbnail
                 <div className="">
 
                 <div className="text-sm md:text-base font-semibold ">
-                {title}
+                {(title.trim().length > 70) && title.trim().slice(0,70)+'...' || title}
                 <div>
                   <div className="text-sm text-gray-900 ">{channelTitle}</div>
                   <div className="flex items-center">
-                  <span className="text-sm  text-gray-800">{Intl.NumberFormat('en',{notation:'compact'}).format(viewCount)}</span>
+                  <span className="text-sm  text-gray-800">{Intl.NumberFormat('en',{notation:'compact'}).format(viewCount)} views</span>
                   <span className="h-1 w-1 bg-gray-500 mx-1 mt-1  rounded-full"></span>
-                  <span className="text-sm text-gray-800" >3 hr ago</span>
+                  <span className="text-sm text-gray-800" >{minifyMs(new Date() - new Date(publishedAt))} ago</span>
                   </div>
                 </div>
                 </div>

@@ -20,9 +20,16 @@ export default function Header() {
                 <img className='h-5 ml-1 md:h-6 md:ml-4' src="https://www.gstatic.com/youtube/img/branding/youtubelogo/svg/youtubelogo.svg" alt="logo-Yt" />
             </div>
             {/* search bar */}
-            <section className='hidden  w-6/12 md:flex gap-1  rounded-full px-2  border-black'>
-                <input placeholder='KhOJO...' className='w-10/12 px-2 ring-2 rounded-full ring-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-0' type="text" />
-                <button className='px-2 py-1 rounded-full border-2 bg-gray-600 hover:bg-gray-500 text-gray-50'><i class="fa-solid fa-magnifying-glass"></i></button>
+            <section className='hidden  w-5/12 md:flex items-center gap-1 rounded-full px-2  border-black'>
+                <div className='relative w-full '>
+                    <input placeholder='KhOJO...' className='w-full px-2 py-1 ring-2 rounded-full ring-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-0' type="text" />
+                    <ul className='absolute w-full rounded-lg translate-y-full -my-1 py-2 bottom-0 left-0 ring-1 ring-gray-200 bg-white shadow-md'>
+                        <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
+                        <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
+                        <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
+                    </ul>
+                </div>
+                <button className='px-2 py-1 rounded-full border-2 bg-gray-600 hover:bg-gray-500 text-gray-50'><i className="fa-solid fa-magnifying-glass"></i></button>
             </section>
             {/* sign */}
             <button className='bg-indigo-600 hover:bg-indigo-500 px-2 text-sm md:text-base py-1 text-gray-50 rounded-lg'>About</button>
