@@ -8,6 +8,7 @@ export default function Header() {
         setSectionShown(!sectionShown) ;
     }
   return (
+    <>
     <header className='fixed w-full top-0 p-1 sm:p-2 md:p-4  shadow-sm  z-10  bg-white'>
         <Sidebar sectionShown={sectionShown} setSectionShown={setSectionShown} toggleSidebar={toggleSidebar}/>
         <nav className='flex justify-between items-center'>
@@ -55,6 +56,10 @@ export default function Header() {
             </div>
         </nav>
     </header>
+    {/* mb for element show below fixed header  */}
+    <div className='mb-12 sm:mb-16'></div>
+    </>
+    
   )
 }
 
