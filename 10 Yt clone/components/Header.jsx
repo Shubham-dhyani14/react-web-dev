@@ -1,6 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
-
+import { Link } from 'react-router-dom';
 export default function Header() {
     const [sectionShown , setSectionShown] = useState(false);
     const [isMobileSearchShown , setIsMobileSearchShown] = useState(false);
@@ -57,7 +57,7 @@ export default function Header() {
         </nav>
     </header>
     {/* mb for element show below fixed header  */}
-    <div className='mb-12 sm:mb-16'></div>
+    <div className='h-12 md:h-16'></div>
     </>
     
   )
@@ -81,7 +81,7 @@ function Sidebar({sectionShown , toggleSidebar}){
         </div>
         {/* menu options */}
         <ul className='mt-4'>
-            <li className="hover:bg-slate-300 px-1 py-1 rounded-lg transition-all duration-200"  ><a href="/" className='flex items-center'><span className="material-symbols-rounded">home</span> <p className='ml-3 md:ml-5'>Home</p> </a></li>
+            <li className="hover:bg-slate-300 px-1 py-1 rounded-lg transition-all duration-200"  ><Link to="/" className='flex items-center'><span className="material-symbols-rounded">home</span> <p className='ml-3 md:ml-5'>Home</p> </Link></li>
 
 
             <li  className="hover:bg-slate-300 px-1 py-1 rounded-lg transition-all duration-200" ><a href="/" className='flex items-center '><span className="material-symbols-rounded">movie</span> <p className='ml-3 md:ml-5'>Shorts</p> </a></li>

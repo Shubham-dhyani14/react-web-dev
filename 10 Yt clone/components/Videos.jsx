@@ -21,17 +21,19 @@ export default function Videos() {
     {/* wrapper for margins (no need added in header in seperate div)*/}
     {/* <div className='mt-12 sm:mt-20'> */} 
    
-   {/* grid for vids only */}
+    {/* grid for vids only */}
+
+  
+   
     <div className=" grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-2 gap-6 sm:px-4" >
     {
+      !videos.length ? <Sheemer/> : 
       videos.map((video)=>{
         return   <VideoCard key={video.id}  {...{id:video.id , ...video.snippet , ...video.statistics}}/>
       })
     }
     </div>
-    {/* </div> */}
-     
-    
+
     </>
    
   )

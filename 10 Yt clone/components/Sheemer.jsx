@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Sheemer() {
+function VideosSheemer() {
   return (
     // <div  className="grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-2 gap-4 " 
     // >
@@ -13,4 +13,13 @@ export default function Sheemer() {
         </div>
   // </div>
   )
+}
+
+export default function Sheemer(){
+  return <>
+          {
+
+            Array(9).fill(' ').map((el)=>{return <VideosSheemer/>})
+          }
+        </>
 }
