@@ -1,11 +1,35 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from 'react'
 import { Link } from 'react-router-dom';
+
+import {API_AUTOCOMPLETE } from '../config'
 export default function Header() {
     const [sectionShown , setSectionShown] = useState(false);
     const [isMobileSearchShown , setIsMobileSearchShown] = useState(false);
+    const [query , setQuery] = useState('') ;
+    const [autoCompleteValues , setAutoCompleteValues] = useState([]) ;
+
     function toggleSidebar(){
         setSectionShown(!sectionShown) ;
+    }
+
+    function handleSearch(value){
+        console.log('set' , value) ;
+        setQuery(value)
+    }
+    useEffect(()=>{
+        const timer = setTimeout(()=> fetchAutocompleteApi(),200) ;
+        return ()=>{
+            clearTimeout(timer) ;
+        }
+    },[query])
+
+    async function fetchAutocompleteApi(){
+            console.log('api auto com' ,API_AUTOCOMPLETE + query) ;
+            const resp = await fetch(API_AUTOCOMPLETE + query) ;
+            const json = await resp.json() ;
+            console.log('auto com', json[1]) ;
+            setAutoCompleteValues(json[1]);
     }
   return (
     <>
@@ -24,12 +48,17 @@ export default function Header() {
             {/* search bar */}
             <section className='hidden  w-5/12 md:flex items-center gap-1 rounded-full px-2  border-black'>
                 <div className='relative w-full '>
-                    <input placeholder='KhOJO...' className='w-full px-2 py-1 ring-2 rounded-full ring-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-0' type="text" />
-                    <ul className='absolute w-full rounded-lg translate-y-full -my-1 py-2 bottom-0 left-0 ring-1 ring-gray-200 bg-white shadow-md'>
-                        <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
-                        <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
-                        <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
-                    </ul>
+                    <input onChange={(e)=>handleSearch(e.target.value)} placeholder='KhOJO...' className='w-full px-2 py-1 ring-2 rounded-full ring-gray-400 focus:outline-none focus:ring-2 focus:ring-blue-300 focus:border-0' type="text" />
+                    {
+                        autoCompleteValues.length ?
+                        <ul className='absolute w-full rounded-lg translate-y-full -my-1 py-2 bottom-0 left-0 ring-1 ring-gray-200 bg-white shadow-md'>
+                            {/* <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
+                            <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
+                            <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li> */
+                            autoCompleteValues.map(val=>{return <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>{val}</li>})
+                            }
+                        </ul> :false 
+                    }
                 </div>
                 <button className='px-2 py-1 rounded-full border-2 bg-gray-600 hover:bg-gray-500 text-gray-50'><i className="fa-solid fa-magnifying-glass"></i></button>
             </section>
@@ -40,18 +69,22 @@ export default function Header() {
                     <label htmlFor="search"><i className="fa-solid fa-magnifying-glass fa-"></i>
                     </label>
                 </button>
-                <button className='bg-indigo-600 hover:bg-indigo-500 px-2 text-sm md:text-base py-1 text-gray-50 rounded-lg'>About</button> 
+                <button className='bg-red-600 hover:bg-red-500 px-2 text-sm md:text-base py-1 text-gray-50 rounded-lg'>About</button> 
                 {/* mobile only- search bar */}
                 <div className={`absolute ${!isMobileSearchShown ? 'block' : 'hidden'}   top-0 left-0 w-full flex gap-6  items-center sm:hidden p-2 bg-gray-100  border-gray-300`}>
                     <div onClick={()=>{setIsMobileSearchShown(true)}}  className='self-start'><i className="fa-solid fa-arrow-left"></i></div>
                     <div className=''>
-                    <input id='search' placeholder='KhOJO...' className='w-64 ml-3 self-center px-2 py-0 flex-1 ring-2 rounded-full ring-gray-400 focus:outline-none focus:ring-blue-300 focus:border-0' type="text" />
+                    <input onChange={(e)=>handleSearch(e.target.value)} id='search' placeholder='KhOJO...' className='w-64 ml-3 self-center px-2 py-0 flex-1 ring-2 rounded-full ring-gray-400 focus:outline-none focus:ring-blue-300 focus:border-0' type="text" />
                     </div>
-                    <ul className={`absolute w-full  translate-y-full  rounded-b-md py-2 bottom-0 left-0 ring-1 ring-gray-400   bg-gray-100 shadow-md`}>
-                        <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
-                        <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
-                        <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>item</li>
-                    </ul>
+                    {
+                       
+                    
+                       autoCompleteValues.length ?   <ul className={`absolute w-full  translate-y-full  rounded-b-md py-2 bottom-0 left-0 ring-1 ring-gray-400   bg-gray-100 shadow-md`}>
+                            {
+                                autoCompleteValues.map(val=>{return <li className='cursor-pointer py-1 px-2 hover:font-medium hover:bg-slate-100 '>{val}</li>})
+                            }
+                        </ul> : false
+                    }
                 </div>
             </div>
         </nav>
@@ -70,7 +103,7 @@ function Sidebar({sectionShown , toggleSidebar}){
     <> 
     <aside className= {`w-42  p-1 sm:p-2 md:p-4  ${sectionShown && '-translate-x-48' }  transition-transform duration-300 bg-gray-200  bg-opacity-95  absolute top-0 left-0 h-screen`} >
         {/* logo and toogle-menu */}
-        <div className='flex items-center'>
+        <div className='flex mt-0.5 lg:mt-0 items-center'>
                 <div className='w-8 h-8  p-1 text-center rounded-full hover:bg-slate-300'
                 onClick={toggleSidebar}
                 

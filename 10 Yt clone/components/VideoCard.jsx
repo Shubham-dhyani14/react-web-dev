@@ -17,6 +17,7 @@ export default function VideoCard({id, publishedAt,title ,channelId, channelTitl
     })()
 
   } , [])
+  console.log('reder video card');
   return (
     
     <>
