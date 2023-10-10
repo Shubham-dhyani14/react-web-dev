@@ -4,18 +4,18 @@ export const appSlice = createSlice({
     name : 'app' , 
     initialState : {
         videos : [],
-        // lruCache : {},
+        lruCache : {},
     },
     reducers : {
         setVideos : (state , action)=>{
             state.videos = action.payload ;
         } ,
         setLruCache : (state , action)=>{
-            state.lruCache = {...state , ...action.payload} ;
+            state.lruCache = Object.assign(state.lruCache , action.payload) ;
         }
     }
 })
 
-export const {setVideos} = appSlice.actions ;
+export const {setVideos , setLruCache} = appSlice.actions ;
 
 export default appSlice.reducer ;

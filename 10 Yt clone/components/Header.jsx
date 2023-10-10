@@ -6,14 +6,14 @@ import {API_AUTOCOMPLETE, API_SEARCH_RESULTS, API_VIDEO_BY_ID } from '../config'
 
 import { UseSelector, useSelector } from 'react-redux/es/hooks/useSelector'
 import { useDispatch } from 'react-redux'
-import {setVideos} from '../utils/appSlice'
+import {setVideos, setLruCache } from '../utils/appSlice'
 
 export default function Header() {
     const [sectionShown , setSectionShown] = useState(false);
     const [isMobileSearchShown , setIsMobileSearchShown] = useState(false);
     const [query , setQuery] = useState('') ;
     const [autoCompleteValues , setAutoCompleteValues] = useState([]) ;
-
+    const lruCache = useSelector(state=>state.app.lruCache) ;
     const dispatch = useDispatch() ;
 
     function toggleSidebar(){
@@ -21,9 +21,8 @@ export default function Header() {
     }
 
     function handleSearch(value){
-        console.log('dom ',document.activeElement.classList);
         if( !value) setAutoCompleteValues([]) ;// !Compulsory -> for hide suggestion fast not dependent on fetch
-        console.log('set' , value) ;
+        // console.log('set' , value) ;
         setQuery(value)
     }
 
@@ -31,10 +30,15 @@ export default function Header() {
     useEffect(()=>{
         if (document.activeElement.classList.contains('search') )
         {
-            const timer = setTimeout(()=> fetchAutocompleteApi(),200) ;
-            return ()=>{
-                clearTimeout(timer) ;
-            } 
+            
+            if(!lruCache[query]) //fetch if not avil in cache
+            {
+                const timer = setTimeout(()=> fetchAutocompleteApi(),200) ;
+                return ()=>{
+                    clearTimeout(timer) ;
+                } 
+            }
+            else(setAutoCompleteValues(lruCache[query])) //else set from cache
         }
     },[query.trim()])
 
@@ -51,8 +55,6 @@ export default function Header() {
         const data = json.items ;
         // console.log('serched vids', data) ;
         const items = [] ;// store all single fetched video
-        // items.push(1,2,3);
-        // console.log('it', items);
         const responses = await Promise.all(
             data.map(async (video)=>{
             const id = video.id.videoId ;
@@ -61,17 +63,20 @@ export default function Header() {
         await Promise.all(responses.map(async resp=>{
             const json = await resp.json() ;
             json.items[0] && items.push(json.items[0]) ;
-        })).then(console.log('itms' , items)) ;
+        })) ;
         dispatch(setVideos(items)) ;
     }
 
     // set auto-com search suggestions
     async function fetchAutocompleteApi(){
-            console.log('api auto com' ,API_AUTOCOMPLETE + query) ;
+            console.log('fetch search query: ' , query) ;
+
             const resp = await fetch(API_AUTOCOMPLETE + query) ;
             const json = await resp.json() ;
-            console.log('auto com', json[1]) ;
+            // console.log('auto com', json[1]) ;
             setAutoCompleteValues(json[1]);
+            console.log('set cache', {[query] : json[1]}) ;
+            dispatch(setLruCache({[query] : json[1]}))  ; //set suggt. to cache 
     }
   return (
     <>
@@ -146,7 +151,7 @@ function Sidebar({sectionShown , toggleSidebar}){
     
     return (
     <> 
-    <aside className= {`w-42  p-1 sm:p-2 md:p-4  ${sectionShown && '-translate-x-48' }  transition-transform duration-300 bg-gray-200  bg-opacity-95  absolute top-0 left-0 h-screen`} >
+    <aside className= {`w-42  p-1 sm:p-2 md:p-4  ${!sectionShown && '-translate-x-48' }  transition-transform duration-300 bg-gray-200  bg-opacity-95  absolute top-0 left-0 h-screen`} >
         {/* logo and toogle-menu */}
         <div className='flex mt-0.5 lg:mt-0 items-center'>
                 <div className='w-8 h-8  p-1 text-center rounded-full hover:bg-slate-300'

@@ -8,7 +8,7 @@ export default function VideoCard({id, publishedAt,title ,channelId, channelTitl
 
   const [channelInfo , setChannelInfo] = useState({}) ;
   useEffect(()=>{
-    // console.log('channel api' , API_YT_CHANNEL_DATA+`&id=${channelId}`+`&key=${API_KEY}`) ;
+    console.log('fetch channel logo (ch. api)') ;
     (async()=>{
       const resp = await fetch(API_YT_CHANNEL_DATA+`&id=${channelId}`+`&key=${API_KEY}`) ;
       const json = await resp.json() ;

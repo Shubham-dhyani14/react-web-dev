@@ -10,19 +10,18 @@ import { useDispatch } from 'react-redux'
 import {setVideos} from '../utils/appSlice'
 export default function Videos() {
   const videos = useSelector(state=>state.app.videos) ;
-  console.log('vids' , videos) ;
+  console.log('store videos' , videos) ;
   const dispatch = useDispatch() ;
 
-  console.log('reduvids' , videos) ;
   // const [videos , setVideos] = useState([]);
   useEffect(()=>{
-    console.log('useeffect' , API_YT_VID_DATA) ;
     if(!videos || !videos.length){
       (async()=>{
+        console.log('useeffect' , API_YT_VID_DATA) ;
         const response = await fetch(API_YT_VID_DATA) ;
         const data = await response.json() ;
         dispatch(setVideos(data.items)) ;
-        console.log('home videos' , data.items) ;
+        console.log('useEffect set videos' , data.items) ;
         // const obj = {...videos[0].snippet , ...videos[0].statistics} ;
         // console.log("videos :" , videos) ; 
       })() ;
