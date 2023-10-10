@@ -6,11 +6,16 @@ import { Outlet , RouterProvider, createBrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import WatchPage from "./components/WatchPage";
+
+import {store} from "./utils/store" ;
+import { Provider } from "react-redux";
 const App = () => {
     return (
-        <>
-            <Header/>
-            <Outlet/>
+        <>  
+            <Provider store={store}>
+                <Header/>
+                <Outlet/>
+            </Provider>
         </>
     )
 }
