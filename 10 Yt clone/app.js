@@ -6,6 +6,8 @@ import { Outlet , RouterProvider, createBrowserRouter } from "react-router-dom";
 import Header from "./components/Header";
 import Body from "./components/Body";
 import WatchPage from "./components/WatchPage";
+import About from "./components/About";
+import OtherMenuLinks from "./components/OtherMenuLinks";
 
 import {store} from "./utils/store" ;
 import { Provider } from "react-redux";
@@ -32,6 +34,14 @@ const myRouter = createBrowserRouter([
             {
                 path : '/watch',
                 element : <WatchPage/>
+            },
+            {
+                path : '/about',
+                element : <About/>
+            },
+            {
+                path : '/lol',
+                element : <OtherMenuLinks/>
             }
         ]
     }

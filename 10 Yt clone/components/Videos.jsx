@@ -36,7 +36,7 @@ export default function Videos() {
 
   
    
-    <div className=" grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-2 gap-6 sm:px-4" >
+    <div className=" grid grid-cols-1 lg:grid-cols-3 sm:grid-cols-2 md:grid-cols-2 gap-6 sm:px-4 mt-3" >
     {
       (!videos || !videos.length) ? <Sheemer/> : 
       videos.map((video)=>{
