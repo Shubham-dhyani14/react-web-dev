@@ -1,9 +1,11 @@
 import React from 'react'
 import {getImages, popularMovies , getVideos} from '../db'
 import {imgBaseUrl} from '../constants'
+import SuggestedMovies from './GenerSuggested'
 export default function FeaturedMovie() {
   return (
     // h-screen to below for h = screen 
+    <>
     <div className='w-full relative overflow-hidden '>
       <iframe className='aspect-video w-full '  src="https://www.youtube.com/embed/1qgWburt3b8?autoplay=0&mute=1&loop=1&si=aov1zMRTA0MXq5yM&playlist=1qgWburt3b8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowfullscreen></iframe>
       {/* overlay-info */}
@@ -21,6 +23,9 @@ export default function FeaturedMovie() {
         </div>
       </div>
     </div>
+    <SuggestedMovies/>
+    </>
+
   )
 }
 
