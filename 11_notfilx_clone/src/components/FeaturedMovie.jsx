@@ -7,7 +7,7 @@ export default function FeaturedMovie() {
     // h-screen to below for h = screen 
     <>
     <div className='w-full relative overflow-hidden '>
-      <iframe className='aspect-video w-full '  src="https://www.youtube.com/embed/1qgWburt3b8?autoplay=0&mute=1&loop=1&si=aov1zMRTA0MXq5yM&playlist=1qgWburt3b8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowfullscreen></iframe>
+      <iframe className='aspect-video w-full '  src="https://www.youtube.com/embed/1qgWburt3b8?autoplay=0&mute=1&loop=1&si=aov1zMRTA0MXq5yM&playlist=1qgWburt3b8" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"  allowFullscreen></iframe>
       {/* overlay-info */}
       <div className='flex  items-center absolute top-0 left-0 w-full h-full bg-gradient-to-r from-gray-950/80 to-transparent'>
         <div className="flex md:w-5/12 lg:w-4/12 ml-8 gap-4 flex-col text-white">
@@ -23,7 +23,6 @@ export default function FeaturedMovie() {
         </div>
       </div>
     </div>
-    <SuggestedMovies/>
     </>
 
   )

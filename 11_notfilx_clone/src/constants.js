@@ -12,3 +12,26 @@ export const options = {
     Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJhNmYxNTU5YWJlNjJmYzQwNDg5MjhlYzRmYWU4MDJjYSIsInN1YiI6IjY1MzEwZjA2YWVkZTU5MDBlOThlYmEyMiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.9Jt0YckrEP2hs_MHZ2gBU_UQLwv_Xz0F-ek6BxWKHsg'
   }
 };
+
+export const fetchMoviesOptions = [
+  {
+    type : 'Trending',
+    url : 'https://api.themoviedb.org/3/trending/movie/day?language=en-US'
+  },
+  {
+    type : 'Popular' ,
+    url : 'https://api.themoviedb.org/3/movie/popular'
+  },
+  {
+    type : 'Now Playing' ,
+    url : 'https://api.themoviedb.org/3/movie/now_playing'
+  },
+  {
+    type : 'Top Rated' ,
+    url : 'https://api.themoviedb.org/3/movie/top_rated'
+  },
+  {
+    type : 'Upcoming' ,
+    url : 'https://api.themoviedb.org/3/movie/upcoming'
+  },
+]
