@@ -1,7 +1,8 @@
 import React, { useRef, useState } from 'react'
 import { img_bg_home } from '../constants'
 import formValidation from '../utils/authValidation'
-import {auth , createUserWithEmailAndPassword } from "firebase/auth";
+import {createUserWithEmailAndPassword , signInWithEmailAndPassword } from "firebase/auth";
+import {auth} from '../utils/firebaseConfig'
 export default function Signup() {
   const [isLogInForm , setisLogInForm] = useState(false) ;
   const [errorMessage , setErrorMessage] = useState(null) ;
@@ -11,18 +12,50 @@ export default function Signup() {
   function handleAuth(){
     const validationError = formValidation(userMail.current.value, userPassword.current.value) ;
     setErrorMessage(validationError) ;
-    // createUserWithEmailAndPassword(auth, userMail.current.value, userPassword.current.value)
-    // .then((userCredential) => {
-    //   // Signed up 
-    //   const user = userCredential.user;
-    //   // ...
-    // })
-    // .catch((error) => {
-    //   const errorCode = error.code;
-    //   const errorMessage = error.message;
-    //   setErrorMessage(`${errorCode} : ${errorMessage}`) ;
-    //   // ..
-    // });
+
+    if(!errorMessage && !isLogInForm){
+      createUserWithEmailAndPassword(auth, userMail.current.value, userPassword.current.value)
+      .then((userCredential) => {
+        // Signed up 
+        const user = userCredential.user;
+        // ...
+        console.log('register' ,user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+
+        if(errorCode === 'auth/invalid-login-credentials')
+        setErrorMessage(`Error! Password doesn't matched`) ;
+        else if(errorCode === 'auth/email-already-in-use')
+        setErrorMessage(`Error! user with this email already exists.`) 
+        else
+        setErrorMessage(`${errorCode} : ${errorMessage}`) ;
+        // ..
+      });
+    }
+    else if(!errorMessage)
+    {
+      signInWithEmailAndPassword(auth, userMail.current.value, userPassword.current.value)
+      .then((userCredential) => {
+        // Signed in 
+        const user = userCredential.user;
+        // ...
+        console.log('loged in',user);
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        
+        if(errorCode === 'auth/invalid-login-credentials')
+        setErrorMessage(`Error! Password doesn't matched`) ;
+        else if(errorCode === 'auth/email-already-in-use')
+        setErrorMessage(`Error! user with this email already exists.`) 
+        else
+        setErrorMessage(`${errorCode} : ${errorMessage}`) ;
+
+      });
+    }
 
   }
 
