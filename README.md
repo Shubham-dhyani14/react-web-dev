@@ -9,4 +9,4 @@ Chapters 0-9 are of learning phase along with building food ording app using [*S
 
 Done projects : 
 - 🎥 `Video Streaming App` [ [repo ](https://github.com/Shubham-dhyani14/react-web-dev/tree/master/10%20Yt%20clone)] [ [checkout Live Deployment 🚀](https://dhyani-yt-app.netlify.app/)]
-- 🍕 `Food ordering app` [[repo](https://github.com/Shubham-dhyani14/react-web-dev/tree/master/09%20Create%20our%20Store)]
+- 🍕 `Food ordering app` [[repo](https://github.com/Shubham-dhyani14/react-web-dev/tree/master/09%20Create%20our%20Store)]  [ [checkout Live Deployment 🚀](https://foodylover.netlify.app/)]
